@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from "dotenv"
 dotenv.config()
+import userRouter from "./routes/user.route.js"
 
 mongoose.connect(process.env.MONGO_URL).then(()=>{
     console.log("Connected to MongoDB")
@@ -14,3 +15,6 @@ const app = express()
 app.listen(3000, ()=>{
     console.log("Server listeningon port 3000");
 })
+
+app.use("/api/user", userRouter);
+
