@@ -1,5 +1,4 @@
-export const test = (req, res) => {
-    res.json({
-      message: 'Api route is working!',
-    });
+
+  export const user = (req, res) => {
+    console.log(req.body)
   };
