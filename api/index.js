@@ -6,13 +6,21 @@ dotenv.config()
 import userRouter from "./routes/user.route.js"
 import authRouter from "./routes/auth.route.js"
 import cookieParser from 'cookie-parser';
+import path from "path"
 
 mongoose.connect(process.env.MONGO_URL).then(()=>{
     console.log("Connected to MongoDB")
 }).catch((err) =>{
     console.log(err)
 });
+const __dirname = path.resolve();
 const app = express()
+
+app.use(express.static(path.join(__dirname, '/client/dist')))
+
+app.get('*' , (req,res)=>{
+    res.sendFile(path.json(__dirname, 'client', 'dist', 'index.html'))
+})
 app.use(express.json())
 app.use(cookieParser());
 
